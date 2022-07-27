@@ -3,8 +3,7 @@ class Game:
     # the Game class contains all methods for running the Game
 
     def __init__(self):
-        self.display_game_rule()
-        self.human_player_selection()
+        pass
 
     def display_game_rule(self):
         # display the game rule
@@ -32,14 +31,13 @@ class Game:
         self.human_player_number = self.check_user_input(2)
         print(f"{self.human_player_number} human player(s) have selected\n")
         # if self.human_player_number == 0:
-            # no human players
-            # ai_player_selection
+        # no human players
+        # ai_player_selection
         # if self.human_player_numer == 1:
-            # ai_player generates gesture
+        # ai_player generates gesture
         # if self.human_player_number == 2:
-            # human_1 choose gesture 
-            # human_2 choose gesture
-
+        # human_1 choose gesture
+        # human_2 choose gesture
 
     def ai_player_selection(self):
         # ask how mamy ai will play
@@ -47,8 +45,10 @@ class Game:
 
     def run_game(self):
         # game starts
+        self.display_game_rule()
+        self.human_player_selection()
         # game ends when one play has two wins
-        pass
+        self.play_again_check()
 
     def display_winner_for_the_round(self):
         # display the winner for the round
@@ -57,10 +57,19 @@ class Game:
     def display_finnal_winner(self):
         pass
 
-    def play_again(self):
+    def play_again_check(self):
         # aks whether user wants to play again
-        pass
 
-    def game_end(self):
-        # print game ends message
-        pass
+        while True:
+            print("Do you want to play again?")
+            self.user_play_again_decision = input("Enter y/n:").lower()
+            if self.user_play_again_decision == "y":
+                self.run_game()
+            elif self.user_play_again_decision == "n":
+                self.game_end_message()
+                break
+            else:
+                print("invalid selection, choose again")
+
+    def game_end_message(self):
+        print("Thank you for playing RPSLS game, see you next time.")
