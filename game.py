@@ -3,12 +3,13 @@ class Game:
     # the Game class contains all methods for running the Game
 
     def __init__(self):
+        self.display_game_rule()
         pass
 
     def display_game_rule(self):
         # display the game rule
-        print("Welcome to Rock Paper Scissors Lizard Spock")
-        print(f"Each match will be best of three games\nUse the number keys to enter your selection")
+        print(f"\nWelcome to Rock Paper Scissors Lizard Spock")
+        print(f"Each match will be best of three games\nUse the number keys to enter your selection\n")
         print(f"Scissor cuts Paper\nPaper covers Rock\nRock crushes Lizard\nLizard poisons Spock")
         print(f"Spock smashes Scissor\nScissor decapitates Lizard\nLizard eats Paper")
         print(f"Paper disproves Spock\nSpock vaporizes Rock\nRock crushes Scissors\n")
