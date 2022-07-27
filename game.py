@@ -4,19 +4,29 @@ class Game:
 
     def __init__(self):
         self.display_game_rule()
-        pass
+        self.human_player_selection()
 
     def display_game_rule(self):
         # display the game rule
         print(f"\nWelcome to Rock Paper Scissors Lizard Spock")
-        print(f"Each match will be best of three games\nUse the number keys to enter your selection\n")
+        print(f"Each match will be best of three games\nUse the number keys to enter your selection\nupdated ")
         print(f"Scissor cuts Paper\nPaper covers Rock\nRock crushes Lizard\nLizard poisons Spock")
         print(f"Spock smashes Scissor\nScissor decapitates Lizard\nLizard eats Paper")
         print(f"Paper disproves Spock\nSpock vaporizes Rock\nRock crushes Scissors\n")
 
+    def check_user_input(self, user_input):
+        while True:
+            try:
+                self.user_input = user_input
+                break
+            except ValueError:
+                print("invalid input, please enter a valid integer number")
+
     def human_player_selection(self):
         # ask how many human players will paly
-        pass
+        print("how many human player? ")
+        self.human_player_number = int(input("Enter 1, 2 or 3: "))
+        self.check_user_input(self.human_player_number)
 
     def ai_player_selection(self):
         # ask how mamy ai will play
