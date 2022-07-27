@@ -7,7 +7,11 @@ class Game:
 
     def display_game_rule(self):
         # display the game rule
-        pass
+        print("Welcome to Rock Paper Scissors Lizard Spock")
+        print(f"Each match will be best of three games\nUse the number keys to enter your selection")
+        print(f"Scissor cuts Paper\nPaper covers Rock\nRock crushes Lizard\nLizard poisons Spock")
+        print(f"Spock smashes Scissor\nScissor decapitates Lizard\nLizard eats Paper")
+        print(f"Paper disproves Spock\nSpock vaporizes Rock\nRock crushes Scissors\n")
 
     def human_player_selection(self):
         # ask how many human players will paly
@@ -32,6 +36,7 @@ class Game:
     def play_again(self):
         # aks whether user wants to play again
         pass
+
     def game_end(self):
         # print game ends message
         pass
