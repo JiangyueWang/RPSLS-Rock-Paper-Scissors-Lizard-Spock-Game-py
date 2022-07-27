@@ -3,7 +3,15 @@ class Game:
     # the Game class contains all methods for running the Game
 
     def __init__(self):
-        pass
+        # 0 Rock
+        # 1 Paper
+        # 2 Scissors
+        # 3 Lizard
+        # 4 Spock
+        self.player1_gesture = 0
+        self.gesture_list = [0, 1, 2, 3, 4]
+        self.player1_wins = 0
+        self.player2_wins = 0
 
     def display_game_rule(self):
         # display the game rule
@@ -25,7 +33,7 @@ class Game:
                 break
         return self.user_input
 
-    def human_player_selection(self):
+    def human_player_number_selection(self):
         # ask how many human players will paly
         print("how many human player? ")
         self.human_player_number = self.check_user_input(2)
@@ -38,11 +46,13 @@ class Game:
     def run_game(self):
         # game starts
         self.display_game_rule()
-        self.human_player_selection()
+        self.human_player_number_selection()
         if self.human_player_number == 0:
             print("----No human players----")
             print("----AI players are generating gestures----")
             # ai_player_selection
+            # display player_1_gesture
+            # display player_2_gesture
         elif self.human_player_number == 1:
             print(
                 f"----Human Player {self.human_player_number} is choosing the gesture----")
@@ -50,15 +60,27 @@ class Game:
                 f"----AI player {self.human_player_number} is generating the gesture----")
             # ai_player generates gesture
         else:
-            print("self.human_player_number == 2")
-        # if self.human_player_number == 2:
-        # human_player_1 choose gesture
-        # human__player_2 choose gesture
-        # game ends when one play has two wins
+            print("multiple human players selected")
+            print(
+                f"----Human Player {self.human_player_number - 1} is choosing the gesture----")
+            print(
+                f"----Human Player {self.human_player_number} is choosing the gesture----")
+
         self.play_again_check()
 
-    def display_winner_for_the_round(self):
+    def determine_winner_for_the_round(self):
         # display the winner for the round
+        if self.player1_gesture == 0:
+            for self.player2_gesture in self.gesture_list:
+                if self.player2_gesture == 0:
+                    print("tie, try again")
+                elif self.player2_gesture == 1 or self.player2_gesture == 4:
+                    print("player2 wins")
+                    self.player2_wins += 1
+                else:
+                    print("player1 wins")
+                    self.player1_wins += 1
+
         pass
 
     def display_finnal_winner(self):
