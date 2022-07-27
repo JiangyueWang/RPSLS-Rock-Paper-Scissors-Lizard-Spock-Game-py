@@ -30,14 +30,6 @@ class Game:
         print("how many human player? ")
         self.human_player_number = self.check_user_input(2)
         print(f"{self.human_player_number} human player(s) have selected\n")
-        # if self.human_player_number == 0:
-        # no human players
-        # ai_player_selection
-        # if self.human_player_numer == 1:
-        # ai_player generates gesture
-        # if self.human_player_number == 2:
-        # human_1 choose gesture
-        # human_2 choose gesture
 
     def ai_player_selection(self):
         # ask how mamy ai will play
@@ -47,6 +39,21 @@ class Game:
         # game starts
         self.display_game_rule()
         self.human_player_selection()
+        if self.human_player_number == 0:
+            print("----No human players----")
+            print("----AI players are generating gestures----")
+            # ai_player_selection
+        elif self.human_player_number == 1:
+            print(
+                f"----Human Player {self.human_player_number} is choosing the gesture----")
+            print(
+                f"----AI player {self.human_player_number} is generating the gesture----")
+            # ai_player generates gesture
+        else:
+            print("self.human_player_number == 2")
+        # if self.human_player_number == 2:
+        # human_player_1 choose gesture
+        # human__player_2 choose gesture
         # game ends when one play has two wins
         self.play_again_check()
 
