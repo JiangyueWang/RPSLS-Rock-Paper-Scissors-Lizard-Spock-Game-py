@@ -14,19 +14,32 @@ class Game:
         print(f"Spock smashes Scissor\nScissor decapitates Lizard\nLizard eats Paper")
         print(f"Paper disproves Spock\nSpock vaporizes Rock\nRock crushes Scissors\n")
 
-    def check_user_input(self, user_input):
+    def check_user_input(self, range):
         while True:
+            self.user_input = input(f'enter valid integer from 0 to {range}: ')
             try:
-                self.user_input = user_input
-                break
+                self.user_input = int(self.user_input)
             except ValueError:
-                print("invalid input, please enter a valid integer number")
+                print("invalid input, please enter a valid integer number again.")
+            else:
+                print("valid entry")
+                break
+        return self.user_input
 
     def human_player_selection(self):
         # ask how many human players will paly
         print("how many human player? ")
-        self.human_player_number = int(input("Enter 1, 2 or 3: "))
-        self.check_user_input(self.human_player_number)
+        self.human_player_number = self.check_user_input(2)
+        print(f"{self.human_player_number} human player(s) have selected\n")
+        # if self.human_player_number == 0:
+            # no human players
+            # ai_player_selection
+        # if self.human_player_numer == 1:
+            # ai_player generates gesture
+        # if self.human_player_number == 2:
+            # human_1 choose gesture 
+            # human_2 choose gesture
+
 
     def ai_player_selection(self):
         # ask how mamy ai will play

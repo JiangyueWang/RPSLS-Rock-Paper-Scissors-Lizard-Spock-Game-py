@@ -6,6 +6,6 @@ class Player:
 
     def __init__(self):
         self.player_name = ""
-    
+
     def select_gesture(self):
         pass
