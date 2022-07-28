@@ -8,6 +8,8 @@ class Game:
         # 2 Scissors
         # 3 Lizard
         # 4 Spock
+        self.player1 = ""
+        self.player2 = ""
         self.player1_gesture = 0
         self.gesture_list = [0, 1, 2, 3, 4]
         self.player1_wins = 0
@@ -51,13 +53,18 @@ class Game:
             print("----No human players----")
             print("----AI players are generating gestures----")
             # ai_player_selection
-            # display player_1_gesture
-            # display player_2_gesture
+            # self.player1 = ai_player1
+            # self.player2 = ai_player2
+            # self.player1_gesture
+            # self.player2_gesture
         elif self.human_player_number == 1:
             print(
                 f"----Human Player {self.human_player_number} is choosing the gesture----")
+                # self.player1 = human_player
+                # self.player1.gesture
             print(
                 f"----AI player {self.human_player_number} is generating the gesture----")
+
             # ai_player generates gesture
         else:
             print("multiple human players selected")
@@ -70,6 +77,7 @@ class Game:
 
     def determine_winner_for_the_round(self):
         # display the winner for the round
+        
         if self.player1_gesture == 0:
             for self.player2_gesture in self.gesture_list:
                 if self.player2_gesture == 0:
