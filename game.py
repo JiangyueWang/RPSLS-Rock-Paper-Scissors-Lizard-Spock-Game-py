@@ -1,5 +1,6 @@
 from human import Human
 from ai import Ai
+import time
 
 
 class Game:
@@ -52,6 +53,7 @@ class Game:
     def run_game(self):
         # game starts
         self.display_game_rule()
+        time.sleep(1)
         self.human_player_number_selection()
         if self.human_player_number == 0:
             print("----No human players----")
@@ -66,9 +68,10 @@ class Game:
                 f"----Human Player {self.human_player_number} is choosing the gesture----")
             self.player1 = Human("Human One")
             self.player1.select_gesture()
+
             print(
                 f"\n----AI player {self.human_player_number} is generating the gesture----")
-
+            time.sleep(1)
             self.player2 = Ai("AI One")
             self.player2.select_gesture()
         else:
@@ -77,56 +80,62 @@ class Game:
                 f"----Human Player {self.human_player_number - 1} is choosing the gesture----")
             print(
                 f"----Human Player {self.human_player_number} is choosing the gesture----")
+        time.sleep(0.5)
+        self.determine_round_winner(
+            self.player1.user_select_gesture_index, self.player2.ai_rand_gesture_index)
+        print(f"{self.player1.player_name} wins {self.player1_wins}\n{self.player2.player_name} wins {self.player2_wins}\n\n")
+
+        while True:
+
+            if self.player1_wins == 2 or self.player2_wins == 2:
+                break
+            else:
+                self.player1.select_gesture()
+                self.player2.select_gesture()
+                self.determine_round_winner(
+                    self.player1.user_select_gesture_index, self.player2.ai_rand_gesture_index)
+                print(
+                    f"{self.player1.player_name} wins {self.player1_wins}\n{self.player2.player_name} wins {self.player2_wins}\n\n")
 
         self.play_again_check()
 
-    def determine_winner_for_the_round(self, player1_gesture_index, player2_gesture_index):
+    def determine_round_winner(self, player1_gesture_index, player2_gesture_index):
         # display the winner for the round
         if player1_gesture_index == 0:
             if player2_gesture_index == 0:
                 print("tie, try again")
             elif player2_gesture_index == 1 or player2_gesture_index == 4:
-                print(f"{self.player2.name} wins")
                 self.player2_wins += 1
             else:
-                print(f"{self.player1.name} wins")
                 self.player1_wins += 1
         elif player1_gesture_index == 1:
             if player2_gesture_index == 1:
                 print("tie, try again")
             elif player2_gesture_index == 0 or player2_gesture_index == 4:
-                print(f"{self.player1.name}wins")
                 self.player1_wins += 1
             else:
-                print(f"{self.player2.name} wins")
                 self.player2_wins += 1
 
         elif player1_gesture_index == 2:
             if player2_gesture_index == 2:
                 print("tie, try again")
             elif player2_gesture_index == 1 or player2_gesture_index == 3:
-                print(f"{self.player1.name}wins")
                 self.player1_wins += 1
             else:
-                print(f"{self.player2.name} wins")
                 self.player2_wins += 1
         elif player1_gesture_index == 3:
             if player2_gesture_index == 3:
                 print("tie, try again")
             elif player2_gesture_index == 1 or player2_gesture_index == 4:
-                print(f"{self.player1.name}wins")
                 self.player1_wins += 1
             else:
-                print(f"{self.player2.name} wins")
                 self.player2_wins += 1
         else:
             if player2_gesture_index == 4:
                 print("tie, try again")
             elif player2_gesture_index == 0 or player2_gesture_index == 2:
-                print(f"{self.player1.name}wins")
                 self.player1_wins += 1
             else:
-                print(f"{self.player2.name} wins")
                 self.player2_wins += 1
 
     def display_finnal_winner(self):
@@ -139,6 +148,8 @@ class Game:
             print("Do you want to play again?")
             self.user_play_again_decision = input("Enter y/n:").lower()
             if self.user_play_again_decision == "y":
+                self.player1_wins = 0
+                self.player2_wins = 0
                 self.run_game()
             elif self.user_play_again_decision == "n":
                 self.game_end_message()
