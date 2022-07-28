@@ -1,3 +1,6 @@
+from human import Human
+from ai import Ai
+
 
 class Game:
     # the Game class contains all methods for running the Game
@@ -60,8 +63,8 @@ class Game:
         elif self.human_player_number == 1:
             print(
                 f"----Human Player {self.human_player_number} is choosing the gesture----")
-                # self.player1 = human_player
-                # self.player1.gesture
+            # self.player1 = human_player
+            # self.player1.gesture
             print(
                 f"----AI player {self.human_player_number} is generating the gesture----")
 
@@ -77,7 +80,7 @@ class Game:
 
     def determine_winner_for_the_round(self):
         # display the winner for the round
-        
+
         if self.player1_gesture == 0:
             for self.player2_gesture in self.gesture_list:
                 if self.player2_gesture == 0:
