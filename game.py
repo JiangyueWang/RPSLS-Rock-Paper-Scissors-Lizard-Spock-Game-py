@@ -13,8 +13,9 @@ class Game:
         # 4 Spock
         self.player1 = ""
         self.player2 = ""
-        self.player1_gesture = 0
-        self.gesture_list = [0, 1, 2, 3, 4]
+        self.player1_gesture_index = 0
+        self.player2_gesture_index = 0
+        # self.gesture_list = [0, 1, 2, 3, 4]
         self.player1_wins = 0
         self.player2_wins = 0
 
@@ -63,12 +64,13 @@ class Game:
         elif self.human_player_number == 1:
             print(
                 f"----Human Player {self.human_player_number} is choosing the gesture----")
-            # self.player1 = human_player
-            # self.player1.gesture
+            self.player1 = Human("Human One")
+            self.player1.select_gesture()
             print(
-                f"----AI player {self.human_player_number} is generating the gesture----")
+                f"\n----AI player {self.human_player_number} is generating the gesture----")
 
-            # ai_player generates gesture
+            self.player2 = Ai("AI One")
+            self.player2.select_gesture()
         else:
             print("multiple human players selected")
             print(
@@ -78,21 +80,54 @@ class Game:
 
         self.play_again_check()
 
-    def determine_winner_for_the_round(self):
+    def determine_winner_for_the_round(self, player1_gesture_index, player2_gesture_index):
         # display the winner for the round
+        if player1_gesture_index == 0:
+            if player2_gesture_index == 0:
+                print("tie, try again")
+            elif player2_gesture_index == 1 or player2_gesture_index == 4:
+                print(f"{self.player2.name} wins")
+                self.player2_wins += 1
+            else:
+                print(f"{self.player1.name} wins")
+                self.player1_wins += 1
+        elif player1_gesture_index == 1:
+            if player2_gesture_index == 1:
+                print("tie, try again")
+            elif player2_gesture_index == 0 or player2_gesture_index == 4:
+                print(f"{self.player1.name}wins")
+                self.player1_wins += 1
+            else:
+                print(f"{self.player2.name} wins")
+                self.player2_wins += 1
 
-        if self.player1_gesture == 0:
-            for self.player2_gesture in self.gesture_list:
-                if self.player2_gesture == 0:
-                    print("tie, try again")
-                elif self.player2_gesture == 1 or self.player2_gesture == 4:
-                    print("player2 wins")
-                    self.player2_wins += 1
-                else:
-                    print("player1 wins")
-                    self.player1_wins += 1
-
-        pass
+        elif player1_gesture_index == 2:
+            if player2_gesture_index == 2:
+                print("tie, try again")
+            elif player2_gesture_index == 1 or player2_gesture_index == 3:
+                print(f"{self.player1.name}wins")
+                self.player1_wins += 1
+            else:
+                print(f"{self.player2.name} wins")
+                self.player2_wins += 1
+        elif player1_gesture_index == 3:
+            if player2_gesture_index == 3:
+                print("tie, try again")
+            elif player2_gesture_index == 1 or player2_gesture_index == 4:
+                print(f"{self.player1.name}wins")
+                self.player1_wins += 1
+            else:
+                print(f"{self.player2.name} wins")
+                self.player2_wins += 1
+        else:
+            if player2_gesture_index == 4:
+                print("tie, try again")
+            elif player2_gesture_index == 0 or player2_gesture_index == 2:
+                print(f"{self.player1.name}wins")
+                self.player1_wins += 1
+            else:
+                print(f"{self.player2.name} wins")
+                self.player2_wins += 1
 
     def display_finnal_winner(self):
         pass
