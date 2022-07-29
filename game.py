@@ -56,72 +56,44 @@ class Game:
             self.player1 = Ai("AI One")
             self.player2 = Ai("AI Two")
 
-    def two_ai_players(self):
-        # there is one human player and one ai player
-        while True:
-            if self.player1_wins == 2 or self.player2_wins == 2:
-                break
-            else:
-                print(f"----round {self.round_num} starts----")
-                # ai one player chooses gesture
-                print(
-                    f"----{self.player1.player_name} is choosing the gesture----")
-                self.player1.select_gesture()
-                self.player1_gesture_index = self.player1.ai_rand_gesture_index
-
-                # ai two player chooses gesture
-                print(
-                    f"\n----{self.player2.player_name} is choosing the gesture----")
-                time.sleep(1)
-                self.player2.select_gesture()
-                self.player2_gesture_index = self.player2.ai_rand_gesture_index
-                self.determine_round_winner(
-                    self.player1_gesture_index, self.player2_gesture_index)
-                print(
-                    f"{self.player1.player_name} wins {self.player1_wins}\n{self.player2.player_name} wins {self.player2_wins}\n\n")
-                continue
-
-    def single_human_player(self):
-        # there is one human player and one ai player
-        while True:
-            if self.player1_wins == 2 or self.player2_wins == 2:
-                break
-            else:
-                print(f"----round {self.round_num} starts----")
-                # human player chooses gesture
-                print(
-                    f"----{self.player1.player_name} is choosing the gesture----")
-                self.player1.select_gesture()
-                self.player1_gesture_index = self.player1.user_select_gesture_index
-
-                # ai player chooses gesture
-                print(
-                    f"\n----{self.player2.player_name} is choosing the gesture----")
-                time.sleep(1)
-                self.player2.select_gesture()
-                self.player2_gesture_index = self.player2.ai_rand_gesture_index
-                self.determine_round_winner(
-                    self.player1_gesture_index, self.player2_gesture_index)
-                print(
-                    f"{self.player1.player_name} wins {self.player1_wins}\n{self.player2.player_name} wins {self.player2_wins}\n\n")
-                continue
-
     def run_game(self):
         # game starts
         self.display_game_rule()
         self.human_player_number_selection()
-        if self.human_player_number == 0:
-            self.two_ai_players()
+        while True:
+            if self.player1_wins == 2 or self.player2_wins == 2:
+                break
+            else:
+                print(f"----round {self.round_num} starts----")
+                # player 1 chooses gesture
+                print(
+                    f"----{self.player1.player_name} is choosing the gesture----")
+                self.player1.select_gesture()
+                # player 1 chooses gesture
+                print(
+                    f"\n----{self.player2.player_name} is choosing the gesture----")
+                time.sleep(2)
+                self.player2.select_gesture()
 
-        elif self.human_player_number == 1:
-            self.single_human_player()
-        else:
-            print("multiple human players selected")
-            print(
-                f"----Human Player {self.human_player_number - 1} is choosing the gesture----")
-            print(
-                f"----Human Player {self.human_player_number} is choosing the gesture----")
+                if self.human_player_number == 0:
+                    # two ai players
+                    self.player1_gesture_index = self.player1.ai_rand_gesture_index
+                    self.player2_gesture_index = self.player2.ai_rand_gesture_index
+                elif self.human_player_number == 1:
+                    # one human player, one ai player
+                    self.player1_gesture_index = self.player1.user_select_gesture_index
+                    self.player2_gesture_index = self.player2.ai_rand_gesture_index
+                else:
+                    # two human players
+                    self.player1_gesture_index = self.player1.user_select_gesture_index
+                    self.player2_gesture_index = self.player2.user_select_gesture_index
 
+                self.determine_round_winner(
+                    self.player1_gesture_index, self.player2_gesture_index)
+                print(
+                    f"{self.player1.player_name} wins {self.player1_wins}\n{self.player2.player_name} wins {self.player2_wins}\n\n")
+                continue
+      
         self.display_finnal_winner()
         self.play_again_check()
 
@@ -130,39 +102,30 @@ class Game:
         # 1. check to see if its a tie
         # 2. check to see if player one is the winner
         # 3. else player 2 is the winner
+        if player1_gesture_index == player2_gesture_index:
+            print("Tie, try again")
         if player1_gesture_index == 0:
-            if player2_gesture_index == 0:
-                print("tie, try again")
-            elif player2_gesture_index == 1 or player2_gesture_index == 4:
+            if player2_gesture_index == 1 or player2_gesture_index == 4:
                 self.player2_wins += 1
             else:
                 self.player1_wins += 1
         elif player1_gesture_index == 1:
-            if player2_gesture_index == 1:
-                print("tie, try again")
-            elif player2_gesture_index == 0 or player2_gesture_index == 4:
+            if player2_gesture_index == 0 or player2_gesture_index == 4:
                 self.player1_wins += 1
             else:
                 self.player2_wins += 1
-
         elif player1_gesture_index == 2:
-            if player2_gesture_index == 2:
-                print("tie, try again")
-            elif player2_gesture_index == 1 or player2_gesture_index == 3:
+            if player2_gesture_index == 1 or player2_gesture_index == 3:
                 self.player1_wins += 1
             else:
                 self.player2_wins += 1
         elif player1_gesture_index == 3:
-            if player2_gesture_index == 3:
-                print("tie, try again")
-            elif player2_gesture_index == 1 or player2_gesture_index == 4:
+            if player2_gesture_index == 1 or player2_gesture_index == 4:
                 self.player1_wins += 1
             else:
                 self.player2_wins += 1
         else:
-            if player2_gesture_index == 4:
-                print("tie, try again")
-            elif player2_gesture_index == 0 or player2_gesture_index == 2:
+            if player2_gesture_index == 0 or player2_gesture_index == 2:
                 self.player1_wins += 1
             else:
                 self.player2_wins += 1
