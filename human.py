@@ -29,6 +29,6 @@ class Human(Player):
             f"\n{self.player_name} chose {self.gesture_list[self.user_select_gesture_index]}")
 
 
-human_one = Human("player 1")
+# human_one = Human("player 1")
 
-human_one.select_gesture()
+# human_one.select_gesture()
