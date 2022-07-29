@@ -1,3 +1,4 @@
+from tabnanny import check
 from player import Player
 
 
@@ -6,25 +7,28 @@ class Human(Player):
     # Each Human player selects gesture themselves via overwritted select_gesture
     def __init__(self, name):
         super().__init__(name)
+        self.user_input = 0
 
     def check_user_input(self, range):
         while True:
-            self.user_input = input(f'enter valid integer from 0 to {range}: ')
+            self.user_select_gesture_index = input(f'enter valid integer from 0 to {range}: ')
             try:
-                self.user_input = int(self.user_input)
+                self.user_select_gesture_index = int(self.user_input)
+                break
             except ValueError:
                 print("invalid input, please enter a valid integer number again.")
-            return self.user_input
+                continue
 
     def select_gesture(self):
         for i in range(0, len(self.gesture_list), 1):
             print(f"Choose {i} for {self.gesture_list[i]}\n")
-        self.user_select_gesture_index = self.check_user_input(
-            len(self.gesture_list)-1)
+        self.check_user_input(len(self.gesture_list)-1)
+        # self.user_select_gesture_index = self.check_user_input(
+        #     len(self.gesture_list)-1)
         print(
             f"\n{self.player_name} chose {self.gesture_list[self.user_select_gesture_index]}")
 
 
-# human_one = human("player 1")
+human_one = Human("player 1")
 
-# human_one.select_gesture()
+human_one.select_gesture()
