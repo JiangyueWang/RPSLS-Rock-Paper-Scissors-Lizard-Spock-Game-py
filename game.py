@@ -93,7 +93,7 @@ class Game:
                 print(
                     f"{self.player1.player_name} wins {self.player1_wins}\n{self.player2.player_name} wins {self.player2_wins}\n\n")
                 continue
-      
+
         self.display_finnal_winner()
         self.play_again_check()
 
