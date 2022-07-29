@@ -2,7 +2,8 @@ from player import Player
 
 
 class Human(Player):
-
+    # Each Human player has a name inheritated from Player class
+    # Each Human player selects gesture themselves via overwritted select_gesture
     def __init__(self, name):
         super().__init__(name)
 
@@ -22,8 +23,6 @@ class Human(Player):
             len(self.gesture_list)-1)
         print(
             f"\n{self.player_name} chose {self.gesture_list[self.user_select_gesture_index]}")
-
-        return self.user_select_gesture_index
 
 
 # human_one = human("player 1")
