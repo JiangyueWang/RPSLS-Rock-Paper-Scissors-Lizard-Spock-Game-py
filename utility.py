@@ -1,4 +1,5 @@
 import random
+from tabnanny import check
 
 
 def rand_index(list_length):
@@ -9,14 +10,19 @@ def rand_index(list_length):
 
 def check_user_input(range):
     while True:
-        user_input = input(f"Enter valid integer from 0 to {range}: ")
+        user_input = input(f"Enter valid integer from 0 to 4: {range}")
         try:
             user_input = int(user_input)
-            break
+            if user_input in range(0, 4):
+                break
+            else:
+                print("Check your entry again")
+                continue
         except ValueError:
             print("Invalid input, please enter a valid integer number again.")
             continue
-        else:
-            print(f"Check your input again, ensure it is from 0 to {range}")
-            continue
+
     return user_input
+
+
+check_user_input()
