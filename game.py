@@ -1,5 +1,6 @@
 from human import Human
 from ai import Ai
+from utility import check_user_input
 import time
 
 
@@ -29,22 +30,22 @@ class Game:
         print(f"Spock smashes Scissor\nScissor decapitates Lizard\nLizard eats Paper\n")
         print(f"Paper disproves Spock\nSpock vaporizes Rock\nRock crushes Scissors\n")
 
-    def check_user_input(self, range):
-        while True:
-            self.user_input = input(f'enter valid integer from 0 to {range}: ')
-            try:
-                self.user_input = int(self.user_input)
-            except ValueError:
-                print("invalid input, please enter a valid integer number again.")
-            else:
-                print("valid entry")
-                break
-        return self.user_input
+    # def check_user_input(self, range):
+    #     while True:
+    #         self.user_input = input(f'enter valid integer from 0 to {range}: ')
+    #         try:
+    #             self.user_input = int(self.user_input)
+    #         except ValueError:
+    #             print("invalid input, please enter a valid integer number again.")
+    #         else:
+    #             print("valid entry")
+    #             break
+    #     return self.user_input
 
     def human_player_number_selection(self):
         # ask how many human players will paly
         print("how many human player? ")
-        self.human_player_number = self.check_user_input(2)
+        self.human_player_number = check_user_input(2)
         print(f"{self.human_player_number} human player(s) have selected\n")
         if self.human_player_number == 1:
             self.player1 = Human("Human One")
