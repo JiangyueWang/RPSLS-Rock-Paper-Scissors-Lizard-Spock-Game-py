@@ -13,7 +13,7 @@ def check_user_input(range1):
         user_input = input(f"Enter valid integer from 0 to {range1}:")
         try:
             user_input = int(user_input)
-            if user_input in range(0, range1):
+            if user_input in range(0, range1+1):
                 break
             else:
                 print("Check your entry again")
