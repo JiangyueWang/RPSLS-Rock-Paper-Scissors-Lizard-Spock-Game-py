@@ -1,5 +1,4 @@
 import random
-from tabnanny import check
 
 
 def rand_index(list_length):
