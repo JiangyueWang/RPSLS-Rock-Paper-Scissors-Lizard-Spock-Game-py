@@ -15,8 +15,8 @@ class Game:
         # 4 Spock
         self.player1 = None
         self.player2 = None
-        self.player1_gesture_index = 0
-        self.player2_gesture_index = 0
+        # self.player1_gesture_index = 0
+        # self.player2_gesture_index = 0
         # self.gesture_list = [0, 1, 2, 3, 4]
         self.player1_wins = 0
         self.player2_wins = 0
@@ -76,21 +76,21 @@ class Game:
                 time.sleep(2)
                 self.player2.select_gesture()
 
-                if self.human_player_number == 0:
-                    # two ai players
-                    self.player1_gesture_index = self.player1.ai_rand_gesture_index
-                    self.player2_gesture_index = self.player2.ai_rand_gesture_index
-                elif self.human_player_number == 1:
-                    # one human player, one ai player
-                    self.player1_gesture_index = self.player1.user_select_gesture_index
-                    self.player2_gesture_index = self.player2.ai_rand_gesture_index
-                else:
-                    # two human players
-                    self.player1_gesture_index = self.player1.user_select_gesture_index
-                    self.player2_gesture_index = self.player2.user_select_gesture_index
+                # if self.human_player_number == 0:
+                #     # two ai players
+                #     self.player1_gesture_index = self.player1.ai_rand_gesture_index
+                #     self.player2_gesture_index = self.player2.ai_rand_gesture_index
+                # elif self.human_player_number == 1:
+                #     # one human player, one ai player
+                #     self.player1_gesture_index = self.player1.user_select_gesture_index
+                #     self.player2_gesture_index = self.player2.ai_rand_gesture_index
+                # else:
+                #     # two human players
+                #     self.player1_gesture_index = self.player1.user_select_gesture_index
+                #     self.player2_gesture_index = self.player2.user_select_gesture_index
 
                 self.determine_round_winner(
-                    self.player1_gesture_index, self.player2_gesture_index)
+                    self.player1.player_chosen_gesture_index, self.player2.player_chosen_gesture_index)
                 print(
                     f"{self.player1.player_name} wins {self.player1_wins}\n{self.player2.player_name} wins {self.player2_wins}\n\n")
                 continue

@@ -6,6 +6,7 @@ class Player:
 
     def __init__(self, name):
         self.player_name = name
+        self.player_chosen_gesture_index = 0
         # 0 Rock
         # 1 Paper
         # 2 Scissors

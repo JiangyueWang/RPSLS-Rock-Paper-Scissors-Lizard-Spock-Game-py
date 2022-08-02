@@ -11,10 +11,10 @@ class Human(Player):
     def select_gesture(self):
         for i in range(0, len(self.gesture_list), 1):
             print(f"Choose {i} for {self.gesture_list[i]}\n")
-        self.user_select_gesture_index = check_user_input(
+        self.player_chosen_gesture_index = check_user_input(
             len(self.gesture_list)-1)
         print(
-            f"\n{self.player_name} chose {self.gesture_list[self.user_select_gesture_index]}")
+            f"\n{self.player_name} chose {self.gesture_list[self.player_chosen_gesture_index]}")
 
 
 # human_one = Human("player 1")
